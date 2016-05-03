@@ -41,13 +41,13 @@ language of your choice, such that you don't have to re-invent the wheel with ea
 
 So, we assume you know a little bit more than Randall Munroe's ten hundred word limit, but we don't expect anything else.
 
-__If functional programming is new and scary for you__ ... never fear, we will cover some of the reasons it is helpful
+__If functional programming is new and scary for you__... never fear, we will cover some of the reasons it is helpful
 in Untangled as well.
 
 ## Table of Contents
 
 1. Background (skip these sections if you already know about them)
-    - React (what virtual dom is, the importance of the `key` attribute, and lifecycle methods)
+    - [React](background/react.md) (what virtual dom is, the importance of the `key` attribute, and lifecycle methods)
     - Om Next (UI tree vs. data tree, one source of truth for app data, syncing state change and UI updates)
         - I am NOT interested in exploring the internals of Om or the reconciler. Theoretically, you do not need
         to know how these work to use Untangled.
