@@ -1,18 +1,35 @@
 # React
 
-This section covers the very basics of [React](https://facebook.github.io/react/index.html), with emphasis on the
-parts of the library that are relevant to Untangled web development.
+This section covers the basics of [React](https://facebook.github.io/react/index.html). React operates as the
+view in Untangled's MVC architecture, so understanding it's behavior will help tremendously when building your web app's
+UI.
 
 ## Virtual DOM
 
-Modern browsers are really, really fast at processing Javascript. It turns out that rendering the DOM is much more
-expensive.
+Firstly, if you are not familiar with the real DOM, [this is an excellent and brief primer](https://css-tricks.com/dom/).
 
-This presents a problem for Javascript web apps that handle a large amount of state. When the state changes, and
-Javascript has to make 15 changes in 10 different places in the DOM, the changes occur quickly but the re-render
-takes appreciably longer (TODO: source?).
+When standard Javascript modifies the DOM, the new DOM has to be rendered to HTML and displayed in the browser.
+It turns out that rendering the DOM to HTML is expensive, because [it was not originally designed for the complex web
+apps that we use today](http://tonyfreed.com/blog/what_is_virtual_dom). Thus, large web-apps that frequently modify the
+DOM can quickly become sluggish performance-wise.
 
-React solves this problem with Virtual DOM...
+How does React solve this rendering performance issue? Even though rendering the DOM is an expensive operation, browsers
+have become exceptionally efficient at interpreting Javascript. React was built to minimize modifications to the DOM, so
+that rendering to HTML is as efficient as possible.
+
+React minimizes DOM modifications by doing what computer scientists do best – adding another layer of abstraction.
+Standard Javascript directly renders the DOM to HTML. React, by contrast, does not want you to modify the DOM. Instead,
+you create React Elements and Components that form the Virtual DOM -- a lightweight, javascript representation of the DOM.
+
+When you change the elements and components in React's virtual DOM, React executes a 'Virtual DOM Diff' to determine
+what changed between the old virtual DOM and the new virtual DOM. This is a very fast operation because it is still
+occurring in Javascript land, the real DOM is not yet involved. Once React has determined exactly what needs to change
+and what needs to stay the same, it batches the virtual DOM changes and applies them to the real DOM, which is then
+rendered to HTML.
+
+So, by keeping track of desired changes to the DOM within Javascript, and batch applying the fewest changes necessary to
+reflect the web app's changing state, the browser renders fewer changes to the DOM and does so less frequently than
+repeated calls to the browser's slower DOM manipulation functions.
 
 There are [plenty of resources](#more) that discuss virtual dom in more depth.
 
