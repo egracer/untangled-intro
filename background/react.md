@@ -31,9 +31,22 @@ repeated calls to the slower DOM manipulation functions.
 
 There are [plenty of resources](#more) that discuss virtual dom in more depth.
 
-### React Elements and Components
+### React Elements
 
-## The `key` attribute
+React Elements are the building blocks for the virtual DOM. There are two kinds of Elements, DOM Elements and
+Component Elements. A DOM Element is a collection of data needed to create a virtual representation of a standard DOM
+tag (div, p, table, etc.). A Component Element contains encapsulated state, which is passed into it as a map of data
+called `props`. You can also think of Components as a logical grouping of DOM Elements and other Components that render
+the data provided in `props`.
+
+Untangled requires that all DOM Elements are rendered within Component Elements. We will cover how to create React
+Elements and Components in the [View]() chapter of the introduction. Before we get our hands dirty with building a
+working UI, it is important to understand the `props` and `key` properties of React Components, and how they affect
+rendering behavior.
+
+#### `props`
+
+#### `key`
 
 ## Props and Component Local State
 

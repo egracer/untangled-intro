@@ -34,8 +34,10 @@ started with Untangled and quickly plow their way across the pool to the deep en
 > a.k.a: what is far outside the scope of this tutorial and I couldn't possibly explain better than existing materials.
 
 - You are familiar with [Clojure(Script) syntax](http://www.braveclojure.com/introduction/). You know what a macro is.
-- You understand what a web development framework is (a library of functions that allow you to build websites in the
-language of your choice, such that you don't have to re-invent the wheel with each new website or write raw HTML/Javascript).
+- You know how to build a simple ClojureScript application. [Modern ClojureScript](https://github.com/magomimmo/modern-cljs) is an excellent place to start.
+Version 1 for [Leiningen](http://leiningen.org/), Version 2 for [Boot](https://github.com/boot-clj/boot).
+- You have a basic understanding of web development (especially HTML and JavaScript). You have a general idea of what
+the DOM is and you know how to modify it with standard Javascript (i.e. `document.body.innerHTML = "Hello, world!";`)
 - You know something about functional programming, immutable data structures, pure functions / referential transparency,
  and [why someone might want to use functional programming over object-oriented models](https://medium.com/@jugoncalves/functional-programming-should-be-your-1-priority-for-2015-47dd4641d6b9#.edws4fjk3).
 
