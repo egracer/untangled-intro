@@ -6,32 +6,32 @@ UI.
 
 ## Virtual DOM
 
+### Overview
+
 Firstly, if you are not familiar with the real DOM, [this is an excellent and brief primer](https://css-tricks.com/dom/).
 
-When standard Javascript modifies the DOM, the new DOM has to be rendered to HTML and displayed in the browser.
-It turns out that rendering the DOM to HTML is expensive, because [it was not originally designed for the complex web
+It turns out that rendering the DOM is expensive, because [it was not originally designed for the complex web
 apps that we use today](http://tonyfreed.com/blog/what_is_virtual_dom). Thus, large web-apps that frequently modify the
 DOM can quickly become sluggish performance-wise.
 
-How does React solve this rendering performance issue? Even though rendering the DOM is an expensive operation, browsers
-have become exceptionally efficient at interpreting Javascript. React was built to minimize modifications to the DOM, so
-that rendering to HTML is as efficient as possible.
+React was built to minimize DOM modifications, so that the render process is as efficient as possible. Even though
+rendering the DOM is an expensive operation, browsers have become exceptionally efficient at interpreting Javascript.
+React's virtual DOM is a lightweight copy of the DOM stored within Javascript. When you make changes to the virtual DOM,
+React executes a diff algorithm to determine exactly what changes have occurred. Then it batches the virtual DOM changes
+and applies them to the real DOM, which the browser proceeds to render.
 
-React minimizes DOM modifications by doing what computer scientists do best – adding another layer of abstraction.
-Standard Javascript directly renders the DOM to HTML. React, by contrast, does not want you to modify the DOM. Instead,
-you create React Elements and Components that form the Virtual DOM -- a lightweight, javascript representation of the DOM.
-
-When you change the elements and components in React's virtual DOM, React executes a 'Virtual DOM Diff' to determine
-what changed between the old virtual DOM and the new virtual DOM. This is a very fast operation because it is still
-occurring in Javascript land, the real DOM is not yet involved. Once React has determined exactly what needs to change
-and what needs to stay the same, it batches the virtual DOM changes and applies them to the real DOM, which is then
-rendered to HTML.
+In other words, React minimizes DOM modifications by doing what computer scientists do best – adding another layer of
+abstraction. Standard Javascript directly modifies the DOM. React, by contrast, does not want you to modify the DOM.
+You modify the virtual DOM instead, and React quickly determines what needs to change and where to make those
+changes in the real DOM.
 
 So, by keeping track of desired changes to the DOM within Javascript, and batch applying the fewest changes necessary to
 reflect the web app's changing state, the browser renders fewer changes to the DOM and does so less frequently than
-repeated calls to the browser's slower DOM manipulation functions.
+repeated calls to the slower DOM manipulation functions.
 
 There are [plenty of resources](#more) that discuss virtual dom in more depth.
+
+### React Elements and Components
 
 ## The `key` attribute
 
