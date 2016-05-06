@@ -35,20 +35,29 @@ There are [plenty of resources](#more) that discuss virtual dom in more depth.
 
 React Elements are the building blocks for the virtual DOM. There are two kinds of Elements, DOM Elements and
 Component Elements. A DOM Element is a collection of data needed to create a virtual representation of a standard DOM
-tag (div, p, table, etc.). A Component Element contains encapsulated state, which is passed into it as a map of data
-called `props`. You can also think of Components as a logical grouping of DOM Elements and other Components that render
-the data provided in `props`.
+tag (div, p, table, etc.). A Component Element is a grouping of DOM Elements and other Components that render
+the data passed into it through `props`.
 
 Untangled requires that all DOM Elements are rendered within Component Elements. We will cover how to create React
-Elements and Components in the [View]() chapter of the introduction. Before we get our hands dirty with building a
+DOM Elements and Components in the [View]() chapter of the introduction. Before we get our hands dirty with building a
 working UI, it is important to understand the `props` and `key` properties of React Components, and how they affect
 rendering behavior.
 
-#### `props`
-
-#### `key`
-
 ## Props and Component Local State
+
+Both are just maps of data that a Component uses to determine what will be rendered in the DOM. A re-render is triggered
+when either is changed.
+
+The key difference between the two is that `props` are derived from global app state, while component local state only
+exists within the component's virtual DOM instance. Once the component is unmounted from the screen, its component state
+is destroyed.
+
+If the UI triggers an action that should persist data even if the component is unmounted, make sure that said data is
+saved to the global app-state so that it reappears in `props`. Only use component state for transient data.
+
+If you want a slightly more thorough breakdown of props vs state, [this is a great explainer](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md).
+
+## The `key` attribute
 
 ## UI Render Lifecycle
 
