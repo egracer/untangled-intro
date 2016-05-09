@@ -6,9 +6,9 @@ UI.
 
 ## Virtual DOM
 
-### Overview
+#### Overview
 
-Firstly, if you are not familiar with the real DOM, [this is an excellent and brief primer](https://css-tricks.com/dom/).
+Firstly, [CSS Tricks](https://css-tricks.com/dom/) has an excellent, brief primer on the DOM if you aren't familiar with it.
 
 It turns out that rendering the DOM is expensive, because [it was not originally designed for the complex web
 apps that we use today](http://tonyfreed.com/blog/what_is_virtual_dom). Thus, large web-apps that frequently modify the
@@ -22,16 +22,16 @@ and applies them to the real DOM, which the browser proceeds to render.
 
 In other words, React minimizes DOM modifications by doing what computer scientists do best – adding another layer of
 abstraction. Standard Javascript directly modifies the DOM. React, by contrast, does not want you to modify the DOM.
-You modify the virtual DOM instead, and React quickly determines what needs to change and where to make those
-changes in the real DOM.
+You modify the virtual DOM instead, and React reconciles the virtual DOM changes into a highly optimized DOM modification.
+We will cover a bit more about the reconciliation process below.
 
 So, by keeping track of desired changes to the DOM within Javascript, and batch applying the fewest changes necessary to
 reflect the web app's changing state, the browser renders fewer changes to the DOM and does so less frequently than
 repeated calls to the slower DOM manipulation functions.
 
-There are [plenty of resources](#more) that discuss virtual dom in more depth.
+There are [plenty of resources listed below](#more) that discuss virtual dom in more depth.
 
-### React Elements
+#### React Elements
 
 React Elements are the building blocks for the virtual DOM. There are two kinds of Elements, DOM Elements and
 Component Elements. A DOM Element is a collection of data needed to create a virtual representation of a standard DOM
@@ -45,8 +45,8 @@ rendering behavior.
 
 ## Props and Component Local State
 
-Both are just maps of data that a Component uses to determine what will be rendered in the DOM. A re-render is triggered
-when either is changed.
+Both are just maps of data that a Component uses to determine what will be rendered in the DOM. When either a component's
+props or its state is changed, React initiates the virtual DOM to real DOM reconciliation process.
 
 The key difference between the two is that `props` are derived from global app state, while component local state only
 exists within the component's virtual DOM instance. Once the component is unmounted from the screen, its component state
@@ -55,9 +55,16 @@ is destroyed.
 If the UI triggers an action that should persist data even if the component is unmounted, make sure that said data is
 saved to the global app-state so that it reappears in `props`. Only use component state for transient data.
 
-If you want a slightly more thorough breakdown of props vs state, [this is a great explainer](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md).
+If you want a slightly more thorough breakdown of props vs state, [the HootSuite developers have a great explainer](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md).
 
 ## The `key` attribute
+
+> react.inc.js:18780 Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method
+of `survey.ui.screens.demo-reports/Reports`. See https://fb.me/react-warning-keys for more information.
+
+The [React documentation on multiple components](https://facebook.github.io/react/docs/multiple-components.html#children)
+describes how the key attribute is used, and shows how the key should be passed to the component rather than to the
+top-level virtual DOM element in that component's render function.
 
 ## UI Render Lifecycle
 
