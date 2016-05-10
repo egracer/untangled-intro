@@ -7,7 +7,7 @@ Please feel free to submit PRs!
 ## Rationale
 
 I joined the Untangled team as part of my first programming job out of college. The extent of my web development
-experience was static HTML and CSS with some very basic Javascript and JQuery.
+experience was static HTML and CSS with some very basic Javascript and jQuery.
 
 When we began developing Untangled on top of Om Next, we discovered that the combination of Om, React, and ClojureScript
 was a lot to swallow all at once. Untangled has significantly helped with streamlining the development process with

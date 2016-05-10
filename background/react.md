@@ -8,7 +8,7 @@ UI.
 
 #### Overview
 
-Firstly, [CSS Tricks](https://css-tricks.com/dom/) has an excellent, brief primer on the DOM if you aren't familiar with it.
+Firstly, [CSS Tricks](https://css-tricks.com/dom/) has an excellent, brief primer on the DOM if you need a refresher.
 
 It turns out that rendering the DOM is expensive, because [it was not originally designed for the complex web
 apps that we use today](http://tonyfreed.com/blog/what_is_virtual_dom). Thus, large web-apps that frequently modify the
@@ -29,7 +29,7 @@ So, by keeping track of desired changes to the DOM within Javascript, and batch 
 reflect the web app's changing state, the browser renders fewer changes to the DOM and does so less frequently than
 repeated calls to the slower DOM manipulation functions.
 
-There are [plenty of resources listed below](#more) that discuss virtual dom in more depth.
+There are [plenty of resources listed below](#more) that discuss virtual DOM in more depth.
 
 #### React Elements
 
@@ -57,14 +57,30 @@ saved to the global app-state so that it reappears in `props`. Only use componen
 
 If you want a slightly more thorough breakdown of props vs state, [the HootSuite developers have a great explainer](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md).
 
-## The `key` attribute
+## The `key` property
+
+How, exactly, does React 'reconcile' the virtual DOM into real DOM?
+
+As mentioned, the process is initiated when there is a change in a component's props or local state. React compares the
+old props and the new props, and if they aren't equal, then the component is marked as requiring a re-render.
+
+During the re-render process, React tries to make the fewest possible modifications to the DOM's existing structure. One
+way that it minimizes DOM manipulation is by using the `key` property, which helps React keep track of the identities
+of each piece DOM as the application state evolves over time.
+
+For the purposes of Untangled, the important thing to know is that you should provide every component with a key function,
+which pulls some unique data out of `props` to use as the `key` property's value. Additionally, any time that you iteratively
+generate either DOM Elements or Component Elements, you need to provide some unique key (any kind of data works fine).
+Otherwise you will see this error:
 
 > react.inc.js:18780 Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method
-of `survey.ui.screens.demo-reports/Reports`. See https://fb.me/react-warning-keys for more information.
+of `ComponentName`. See https://fb.me/react-warning-keys for more information.
 
-The [React documentation on multiple components](https://facebook.github.io/react/docs/multiple-components.html#children)
+So, now you know what that means!
+
+The [The React documentation on multiple components](https://facebook.github.io/react/docs/multiple-components.html#children)
 describes how the key attribute is used, and shows how the key should be passed to the component rather than to the
-top-level virtual DOM element in that component's render function.
+top-level virtual DOM element in that component's render function. It also describes more about the reconciliation process.
 
 ## UI Render Lifecycle
 
