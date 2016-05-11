@@ -50,7 +50,7 @@ in Untangled as well.
 
 1. Background (skip these sections if you already know about them)
     - [React](background/react.md) (what virtual dom is, the importance of the `key` attribute, and lifecycle methods)
-    - Om Next (UI tree vs. data tree, one source of truth for app data, syncing state change and UI updates)
+    - [Om Next](background/om.md) (UI tree vs. data tree, one source of truth for app data, syncing state change and UI updates)
         - I am NOT interested in exploring the internals of Om or the reconciler. Theoretically, you do not need
         to know how these work to use Untangled.
     - Model / View / Controller paradigm
