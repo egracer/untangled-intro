@@ -64,29 +64,41 @@ How, exactly, does React 'reconcile' the virtual DOM into real DOM?
 As mentioned, the process is initiated when there is a change in a component's props or local state. React compares the
 old props and the new props, and if they aren't equal, then the component is marked as requiring a re-render.
 
-During the re-render process, React tries to make the fewest possible modifications to the DOM's existing structure. One
-way that it minimizes DOM manipulation is by using the `key` property, which helps React keep track of the identities
-of each piece DOM as the application state evolves over time.
+One way that React minimizes DOM manipulation is by using the `key` property, which helps it to keep track of the
+unique pieces of the DOM as the application state evolves over time.
 
-For the purposes of Untangled, the important thing to know is that you should provide every component with a key function,
-which pulls some unique data out of `props` to use as the `key` property's value. Additionally, any time that you iteratively
-generate either DOM Elements or Component Elements, you need to provide some unique key (any kind of data works fine).
-Otherwise you will see this error:
+For the purposes of Untangled, any time that you iteratively generate a list of DOM Elements or Component Elements, you
+need to provide a key property that is _unique to that level of the DOM tree_. We will cover how to do this in the
+[View]() chapter of the introduction. If you iteratively generate elements that do not provide key properties, you will
+see this error:
 
 > react.inc.js:18780 Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method
 of `ComponentName`. See https://fb.me/react-warning-keys for more information.
 
-So, now you know what that means!
+So, now you know what that means! To fix it, you need to find the list of React Elements lacking key properties in the
+component specified by the error message.
 
 The [The React documentation on multiple components](https://facebook.github.io/react/docs/multiple-components.html#children)
-describes how the key attribute is used, and shows how the key should be passed to the component rather than to the
-top-level virtual DOM element in that component's render function. It also describes more about the reconciliation process.
+describes more about how the key attribute is used. It also describes more about the reconciliation process.
 
-## UI Render Lifecycle
+## DOM Reconciliation and the Render Lifecycle
 
-TODO: More info here
+You can override the default implementations of React lifecycle methods in your components. For more information on how
+these functions are best used, see the [React docs on Lifecycle Methods](https://facebook.github.io/react/docs/component-specs.html#lifecycle-methods).
+We will cover how and where to add these methods in the [View]() chapter.
 
-For more information, see the [React docs on Lifecycle Methods](https://facebook.github.io/react/docs/component-specs.html#lifecycle-methods).
+1. When a component has been initialized and is about to be reconciled to DOM, `componentWillMount` is triggered. Changes
+to component local state in this function will be rendered as if they had been made before the component was mounted.
+2. Once the component has been reconciled to DOM, all of its child components will be mounted (calling `componentWillMount`
+and `componentDidMount` on each) before its `componentDidMount` is triggered.
+3. When a component receives new props and is triggered for DOM reconciliation, `componentWillReceiveProps` is triggered,
+with the new props as an argument.
+4. When a component receives new props OR new state, `shouldComponentUpdate` will be triggered. It should return a
+boolean value. If true, the component will undergo DOM reconciliation. If false, it will not.
+5. `componentWillUpdate` and `componentDidUpdate` are triggered respectively before and after the component is reconciled
+to the DOM. The first function has the new props and state as arguments, the second has the old props and state as
+arguments.
+6. When a component is going to be removed from the DOM, `componentWillUnmount` is triggered.
 
 ## <a name="more"></a>Additional Material
 
