@@ -49,11 +49,11 @@ in Untangled as well.
 ## Table of Contents
 
 1. Background (skip these sections if you already know about them)
+    - [MVC Architecture](background/mvc.md)
     - [React](background/react.md) (what virtual dom is, the importance of the `key` attribute, and lifecycle methods)
     - [Om Next](background/om.md) (UI tree vs. data tree, one source of truth for app data, syncing state change and UI updates)
         - I am NOT interested in exploring the internals of Om or the reconciler. Theoretically, you do not need
         to know how these work to use Untangled.
-    - Model / View / Controller paradigm
 
 2. Untangled Client Enlightenment
     - Model: App-state database and `idents`
