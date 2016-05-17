@@ -56,8 +56,8 @@ in Untangled as well.
         to know how these work to use Untangled.
 
 2. Untangled Client Enlightenment
-    - Model: App-state database and `idents`
     - View: `defui`, components, and the UI render lifecycle.
+    - Model: App-state database and `idents`
     - Controller: queries, normalization and denormalization, mutations
         - It is especially important to emphasize that how you get data _out_ is not the same as how you put data _in_.
 
